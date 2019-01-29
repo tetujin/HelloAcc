@@ -40,14 +40,13 @@ class ViewController: UIViewController{
         // Make sure the accelerometer hardware is available.
         if self.motion.isAccelerometerAvailable {
             self.motion.accelerometerUpdateInterval = 1.0 / 60.0 // 60fps
-            self.motion.startAccelerometerUpdates()
             self.motion.startAccelerometerUpdates(to: .main) { (data, error) in
                 // Get the accelerometer data.
                 if let data = self.motion.accelerometerData {
-                    
                     let x = data.acceleration.x
                     let y = data.acceleration.y
                     let z = data.acceleration.z
+                    
                     let comp = sqrt( x*x + y*y + z*z )
                     
                     // Use the accelerometer data in your app.
@@ -79,4 +78,6 @@ class ViewController: UIViewController{
     }
     
 }
+
+
 
