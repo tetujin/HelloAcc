@@ -15,7 +15,6 @@ class ViewController: UIViewController{
     @IBOutlet weak var xLabel: UILabel!
     @IBOutlet weak var yLabel: UILabel!
     @IBOutlet weak var zLabel: UILabel!
-    @IBOutlet weak var compLabel: UILabel!
     @IBOutlet weak var button: UIButton!
     
     var status:Bool = false
@@ -39,29 +38,27 @@ class ViewController: UIViewController{
         }
     }
     
+    /// Start Accelerometer Sensor
     func startAccelerometer(){
         // Make sure the accelerometer hardware is available.
         if self.motion.isAccelerometerAvailable {
             self.motion.accelerometerUpdateInterval = 1.0 / 60.0 // 60fps
             self.motion.startAccelerometerUpdates(to: .main) { (data, error) in
                 // Get the accelerometer data.
-                if let data = self.motion.accelerometerData {
-                    let x = data.acceleration.x
-                    let y = data.acceleration.y
-                    let z = data.acceleration.z
-                    
-                    let comp = sqrt( x*x + y*y + z*z )
+                if let d = data {
+                    let x = d.acceleration.x
+                    let y = d.acceleration.y
+                    let z = d.acceleration.z
                     
                     // Use the accelerometer data in your app.
-                    self.xLabel.text = String(format: "x:%.2f", x)
-                    self.yLabel.text = String(format: "y:%.2f", y)
-                    self.zLabel.text = String(format: "z:%.2f", z)
-                    self.compLabel.text = String(format: "composit:%.2f", comp)
+                    self.xLabel.text = String(x)
+                    self.yLabel.text = String(y)
+                    self.zLabel.text = String(z)
                     
+                    // Detect a motion of smartphone
                     if x > 1 {
                         print("x>1")
-                        // AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-                        AudioServicesPlaySystemSound(1001)
+                        AudioServicesPlaySystemSound(1003)
                     }else if y > 1 {
                         print("y>1")
                         AudioServicesPlaySystemSound(1004) // SMSReceived_Alert
@@ -74,6 +71,7 @@ class ViewController: UIViewController{
         }
     }
     
+    /// Stop Accelerometer Sensor
     func stopAccelerometer(){
         if self.motion.isAccelerometerActive {
             self.motion.stopAccelerometerUpdates()
