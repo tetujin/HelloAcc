@@ -82,6 +82,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="button" destination="6Bl-vO-6W1" id="FYJ-kG-elH"/>
                         <outlet property="compLabel" destination="NRd-Cv-y7c" id="bNV-RG-FEr"/>
                         <outlet property="xLabel" destination="fQU-1y-RaZ" id="zTe-Qc-YLF"/>
                         <outlet property="yLabel" destination="Y3S-QX-WNe" id="7Ra-ge-psf"/>

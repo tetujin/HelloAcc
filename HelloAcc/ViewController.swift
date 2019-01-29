@@ -16,6 +16,7 @@ class ViewController: UIViewController{
     @IBOutlet weak var yLabel: UILabel!
     @IBOutlet weak var zLabel: UILabel!
     @IBOutlet weak var compLabel: UILabel!
+    @IBOutlet weak var button: UIButton!
     
     var status:Bool = false
     
@@ -29,9 +30,11 @@ class ViewController: UIViewController{
     @IBAction func pushedButton(_ sender: Any) {
         if self.status {
             stopAccelerometer()
+            button.setTitle("Start", for: .normal)
             self.status = false
         }else{
             startAccelerometer()
+            button.setTitle("Stop", for: .normal)
             self.status = true
         }
     }
